@@ -1,1 +1,6 @@
 # Confesionaria_Autos
+El presente proyecto trata sobre un concesionario de vehículos de todo tipo, como ser automóviles, buses de transporte y motocicletas de todo tipo. De ese modo, el programa principal se encarga de generar una estructura de clases con el fin de poder indicar las características de cada vehículo. Por ejemplo, los automóviles pueden presentar características como número de puertas, el tipo de caja (manual o automática) y si posee techo panorámico. Por otro parte, los buses se caracterizan por tener en cuenta la capacidad de pasajeros que pueden llevar, así también como el tipo de caja del mismo. Para el caso de las motocicletas, estás solo podrán ser del tipo deportivas o no. Es importante mencionar que cada una de estas clases heredarán atributos y métodos de una clase padre como la será la clase Vehículo, esta incluirá como atributos marca, modelo, kilometraje, color, tipo de energía (gasolina, diésel o eléctrico) y esencialmente el precio.   
+## Funcionalidad
+El programa permitirá agregar vehículos con sus respectivas características. Adicionalmente, será capaz de mostrar las características de cada vehículo y a partir de ello, calcular el precio en dólares americanos USD. 
+## Consideraciones
+El programa será construido netamente con el lenguaje C++ standard y correrá solo en consola. 
