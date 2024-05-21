@@ -4,3 +4,5 @@ El presente proyecto trata sobre un concesionario de vehículos de todo tipo, co
 El programa permitirá agregar vehículos con sus respectivas características. Adicionalmente, será capaz de mostrar las características de cada vehículo y a partir de ello, calcular el precio en dólares americanos USD. 
 ## Consideraciones
 El programa será construido netamente con el lenguaje C++ standard y correrá solo en consola. 
+## Restricciones
+Algunos casos que generen que el programa deje de funcionar es la introducción incorrecta del tipo de datos. Es importante entender que cada constructor requiere un determinado tipo de dato, como ser enteros, valores flotantes, cadenas de caracteres e incluso el mismo programa requiere valores booleanos. Si se introduce un tipo de valor erróneo en un constructor, método o en otras funciones el programa sufrirá problemas. Del mismo modo, es importante tener la longitud de cada vector creado para auto[], bus[], moto[], ya que si en caso que se superé esa longitud el programa generará valores basura.  
