@@ -1,9 +1,9 @@
 /*
  * Proyecto Concesionario de Autos
- * Andrés Ignacio Zegales Taborga
+ * AndrÃ©s Ignacio Zegales Taborga
  * A01711365
- * 22/05/2024
- * Version: 1
+ * 27/05/2024
+ * Version: 2
  * Esta clase definida como Vehiculo es la clase Padre de las clases Auto, Bus y Motocicleta
  * Esta clase brindara tantos sus atributos como metodos a las clases mencionadas anteriormente
  */
@@ -17,6 +17,7 @@ using namespace std;
 // Declaracion de la clase Vehiculo
 class Vehiculo {
     protected: // Variables de instancia
+        string tipo;
         string marca;
         string modelo;
         string color;
@@ -27,16 +28,19 @@ class Vehiculo {
         Vehiculo();
         Vehiculo(string, string, string, string, float); // Metodo donde se aplica sobrecarga
         Vehiculo(string, string, string); // Metodo donde se aplica sobrecarga
+        string get_tipo() {return tipo;};
+        string get_marca() {return marca;};
         string get_energia(){return tipo_energia;};
         float get_km(){return kilometraje;};
-        float calcular_precio(); // Metodo donde se aplica sobreescritura
-        string mostrar_caracteristicas(); // Metodo donde se aplica sobreescritura
+        virtual float calcular_precio() = 0; // Metodo por default donde se aplica sobreescritura y se aplica polimorfismo
+        virtual string mostrar_caracteristicas() = 0; // Metodo por default donde se aplica sobreescritura y se aplica polimorfismo
 };
 
 Vehiculo::Vehiculo(){
 }
 
 Vehiculo::Vehiculo(string _marca, string _modelo, string _color, string _tipo_energia, float _kilometraje){
+    tipo = "";
     marca = _marca;
     modelo = _modelo;
     color = _color;
@@ -46,6 +50,7 @@ Vehiculo::Vehiculo(string _marca, string _modelo, string _color, string _tipo_en
 }
 
 Vehiculo::Vehiculo(string _marca, string _modelo, string _color){
+    tipo = "";
     marca = _marca;
     modelo = _modelo;
     color = _color;
@@ -79,24 +84,36 @@ Auto::Auto(){
 }
 
 Auto::Auto(string _marca, string _modelo, string _color, string _tipo_energia, float _kilometraje, int _nro_puerta, bool _techo, string _tipo_caja):Vehiculo(_marca, _modelo, _color, _tipo_energia, _kilometraje){
+    tipo = "Auto";
     nro_puerta = _nro_puerta;
     techo = _techo;
     tipo_caja = _tipo_caja;
 }
 
 Auto::Auto(string _marca, string _modelo, string _color, int _nro_puerta, bool _techo, string _tipo_caja):Vehiculo(_marca, _modelo, _color){
+    tipo = "Auto";
     nro_puerta = _nro_puerta;
     techo = _techo;
     tipo_caja = _tipo_caja;
 }
 
 Auto::Auto(string _marca, string _modelo, string _color, bool _techo):Vehiculo(_marca, _modelo, _color){
+    tipo = "Auto";
     nro_puerta = 4;
     techo = _techo;
     tipo_caja = "Automatico";
 }
 
-float Auto::calcular_precio(){ // Este método aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
+/*
+* La funcion calcular_precio() establece el precio de cada auto respecto al vehiculo y las caracteristicas del mismo
+* Por ejemplo, si el vehiculo es de una marca deluxe como ser Audi, Mercedes Benz o BMW, el precio aumenta
+* Del mismo modo, si el auto posee un tipo de caja automatico, el precio aumenta a diferencia que sea manual
+* Igual el tema del kilometraje es muy importante ya que al tener un kilometraje menor, el auto tiene mas valor
+* Adicionalmente, el hecho que el auto posea techo panoramico influye en el precio.
+* La funcion retorna el precio del auto segun las caracteristicas que posee.
+*/
+
+float Auto::calcular_precio(){ // Este mÃ©todo aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
     float precio1, precio2;
     precio1 = 0.0;
     precio2 = 0.0;
@@ -186,7 +203,13 @@ float Auto::calcular_precio(){ // Este método aplica el concepto de sobreescritu
     return precio;
 }
 
-string Auto::mostrar_caracteristicas() { // Este método aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
+/*
+* La funcion mostrar_caracteristicas() concatena todas las caracteristicas del auto y la introduce dentro de una variable
+* La usando la funcion to_string, convertimos los valores que no sean del tipo string, de esa se puede concatenar todas las
+* variables de importancia. Finalmente, la funcion retorna un string con los valores y el texto concatenado.
+*/
+
+string Auto::mostrar_caracteristicas() { // Este mÃ©todo aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
     string info;
     info = "Marca: " + marca + "\n";
     info = info + "Modelo: " + modelo + "\n";
@@ -221,16 +244,27 @@ Bus::Bus(){
 }
 
 Bus::Bus(string _marca, string _modelo, string _color, string _tipo_energia, float _kilometraje, int _capacidad, string _tipo_caja):Vehiculo(_marca, _modelo, _color, _tipo_energia, _kilometraje){
+    tipo = "Bus";
     capacidad = _capacidad;
     tipo_caja = _tipo_caja;
 }
 
 Bus::Bus(string _marca, string _modelo, string _color, int _capacidad):Vehiculo(_marca, _modelo, _color){
+    tipo = "Bus";
     capacidad = _capacidad;
     tipo_caja = "Manual";
 }
 
-float Bus::calcular_precio(){ // Este método aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
+/*
+* La funcion calcular_precio() establece el precio de cada bus respecto a las caracteristicas que posee el mismo
+* Por ejemplo, si el vehiculo es de una marca deluxe como ser Volvo, Mercedes Benz, el precio aumenta
+* Del mismo modo, si el bus posee un tipo de caja automatico, el precio aumenta a diferencia que sea manual
+* Igual el tema del kilometraje es muy importante ya que al tener un kilometraje menor, el bus tiene mas valor
+* Adicionalmente, la capacidad de pasajeros que el bus posea influye en el precio.
+* La funcion retorna el precio del auto segun las caracteristicas que posee.
+*/
+
+float Bus::calcular_precio(){ // Este mÃ©todo aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
     float precio1, precio2;
     precio1 = 0.0;
     precio2 = 0.0;
@@ -297,7 +331,14 @@ float Bus::calcular_precio(){ // Este método aplica el concepto de sobreescritur
     precio = precio1 + precio2;
     return precio;
 }
-string Bus::mostrar_caracteristicas() { // Este método aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
+
+/*
+* La funcion mostrar_caracteristicas() concatena todas las caracteristicas del auto y la introduce dentro de una variable
+* La usando la funcion to_string, convertimos los valores que no sean del tipo string, de esa se puede concatenar todas las
+* variables de importancia. Finalmente, la funcion retorna un string con los valores y el texto concatenado.
+*/
+
+string Bus::mostrar_caracteristicas() { // Este mÃ©todo aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
     string info;
     info = "Marca: " + marca + "\n";
     info = info + "Modelo: " + modelo + "\n";
@@ -327,10 +368,20 @@ Motocicleta::Motocicleta(){
 }
 
 Motocicleta::Motocicleta(string _marca, string _modelo, string _color, string _tipo_energia, float _kilometraje, bool _deportiva):Vehiculo(_marca, _modelo, _color, _tipo_energia, _kilometraje){
+    tipo = "Motocicleta";
     deportiva = _deportiva;
 }
 
-float Motocicleta::calcular_precio(){ // Este método aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
+/*
+* La funcion calcular_precio() establece el precio de cada motocicleta respecto a las caracteristicas que posee el mismo
+* Por ejemplo, si el vehiculo es de una marca deluxe como ser Yamaha, Honda o Harley-Davidson, el precio aumenta
+* Del mismo modo, el tema del kilometraje es muy importante ya que al tener un kilometraje menor, la motocicleta tiene mas valor
+* Adicionalmente, si la motocicleta es deportiva o no, igual influye en el precio.
+* La funcion retorna el precio del auto segun las caracteristicas que posee.
+*/
+
+
+float Motocicleta::calcular_precio(){ // Este mÃ©todo aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
     float precio1, precio2;
     if (deportiva == true){
         precio1 = 4500;
@@ -384,7 +435,13 @@ float Motocicleta::calcular_precio(){ // Este método aplica el concepto de sobre
     return precio;
 }
 
-string Motocicleta::mostrar_caracteristicas(){ // Este método aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
+/*
+* La funcion mostrar_caracteristicas() concatena todas las caracteristicas del auto y la introduce dentro de una variable
+* La usando la funcion to_string, convertimos los valores que no sean del tipo string, de esa se puede concatenar todas las
+* variables de importancia. Finalmente, la funcion retorna un string con los valores y el texto concatenado.
+*/
+
+string Motocicleta::mostrar_caracteristicas(){ // Este mÃ©todo aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
     string info;
     info = "Marca: " + marca + "\n";
     info = info + "Modelo: " + modelo + "\n";
