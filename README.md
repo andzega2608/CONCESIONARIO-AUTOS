@@ -28,8 +28,8 @@ Dejando de lado lo mencionado anteriormente, es importante tener muy en cuenta l
 En el apartado de correcciones, en un principio se aplicó de una manera ineficaz el tema de sobreescritura. El problema fue que en la clase padre class Vehiculo los métodos que se están sobrescribiendo (calcular_precio(), mostrar_caracteristicas()) no se definieron previamente. De ese modo, con el fin de corregir lo mencionado anteriormente, se implementó el concepto de polimorfismo y clases abstractas. Es decir, la clase padre se definió como clase abstracta. Por tanto, ambos métodos se definieron de la siguiente forma. 
 
 virtual int calcular_precio() = 0;
-
 virtual string mostrar_caracteristicas() = 0;
 
 Adicionalmente, es importante mencionar que, los métodos anteriores fueron sobreescritos en las respectivas clases hijas Auto, Bus y Motocicleta. 
 
+Otra corrección que se realizó fue en el Main.cpp al generar una búsqueda según la marca de los vehículos. Pues, existen marcas como Mercedes Benz, la cual consta de dos palabras. De esa forma al momento de filtrar acorde a dicha marca, el programa presentaba un error por el tema de la tecla “space”. De esa forma, con el fin de poder solucionar dicho error, se implementó la función getline(cin, marca). Mediante esto, se soluciona dicho problema. 
