@@ -2,13 +2,14 @@
  * Proyecto Concesionario de Autos
  * Andrés Ignacio Zegales Taborga
  * A01711365
- * 27/05/2024
- * Version: 2
+ * 05/06/2024
+ * Version: 3
+ *
  * El presente programa hace referencia a un algoritmo el cual se encarga de capturar
  * distintas caracteristicas de toda clase de vehiculos como ser autos, buses y motocicletas
  * con el fin de poder calcular el precio de cada uno de ellos y almacenar la informacion.
  * Adicionalmente, el programa es capaz de realizar la busqueda de un vehiculo con caracteristicas
- * especificas
+ * especificas, como ser busqueda por marca, kilometraje y tipo de vehiculo.
  */
 
 #include <string>
@@ -17,7 +18,7 @@
 using namespace std;
 
 int main() {
-    cout<<"BIENVENIDO A CONCESIONARIO DE AUTOS INTERNACIONAL MOTORS"<<endl;
+    cout<<"BIENVENIDO A CONCESIONARIO DE AUTOS INTERNATIONAL MOTORS"<<endl;
     Concesionario concesionario;
     int continua = 1; int opcion;
     string marca, modelo, color, tipo_energia, tipo_caja;
@@ -34,12 +35,13 @@ int main() {
         cout<<"7. Mostrar por precio"<<endl;
         cout<<"8. Salir: "<<endl;
         cout<<"Ingrese una opcion: "; cin>>opcion;
+        cin.ignore();
         if (opcion == 1) {
             system("cls");
             // Ingresamos datos desde teclado
             cout<<"Ingresa los datos correspondientes"<<endl;
-            cout<<"Marca: "; cin>>marca;
-            cout<<"Modelo: "; cin>>modelo;
+            cout<<"Marca: "; getline(cin, marca); // Se usa getline porque existen marcar como Mercedes Benz que utilizan espacio
+            cout<<"Modelo: "; getline(cin, modelo); // Se utiliza getline porque existen modelos de autos
             cout<<"Color: "; cin>>color;
             cout<<"Tipo de energia (Gasolina/Electrico): "; cin>>tipo_energia;
             cout<<"Auto cero km (1 si es nuevo / 0 si no lo es): "; cin>>km;
@@ -66,8 +68,8 @@ int main() {
             system("cls");
             // Ingresamos datos desde teclado
             cout<<"Ingresa los datos correspondientes"<<endl;
-            cout<<"Marca: "; cin>>marca;
-            cout<<"Modelo: "; cin>>modelo;
+            cout<<"Marca: "; getline(cin, marca);
+            cout<<"Modelo: "; getline(cin, modelo);
             cout<<"Color: "; cin>>color;
             cout<<"Tipo de energia (Gasolina/Electrico): "; cin>>tipo_energia;
             cout<<"Auto cero km (1 si es nuevo / 0 si no lo es): "; cin>>km;
@@ -88,8 +90,8 @@ int main() {
             system("cls");
             // Ingresamos datos desde teclado
             cout<<"Ingresa los datos correspondientes"<<endl;
-            cout<<"Marca: "; cin>>marca;
-            cout<<"Modelo: "; cin>>modelo;
+            cout<<"Marca: "; getline(cin, marca);
+            cout<<"Modelo: "; getline(cin, modelo);
             cout<<"Color: "; cin>>color;
             cout<<"Tipo de energía (Gasolina/Electrico): "; cin>>tipo_energia;
             cout<<"Kilometraje: "; cin>>kilometraje;
@@ -104,7 +106,7 @@ int main() {
         else if (opcion == 5){
             system("cls");
             string tipo;
-            cout<<"Ingresa el tipo de vehiculo (Auto, Bus, Motocicleta): "; cin>>tipo;
+            cout<<"Ingresa el tipo de vehiculo (Auto, Bus, Motocicleta): "; getline(cin, tipo);
             if (tipo == "Auto") {
                 cout<<"AUTOS EN EL CONCESIONARIO"<<endl;
                 concesionario.imprime_vehiculos(tipo); // Imprime todos los autos del catalogo
@@ -114,13 +116,13 @@ int main() {
                 concesionario.imprime_vehiculos(tipo); // Imprime todos los buses del catalogo
             }
             else {
-                cout<<"MOTOCICLETAS EN EL CONCESIONARIO"<<endl;
+                cout<<"MOTOCICLETA EN EL CONCESIONARIO"<<endl;
                 concesionario.imprime_vehiculos(tipo); // Imprime todas las motocicletas del catalogo
             }
         }
         else if (opcion == 6){
             system("cls");
-            cout<<"Ingrese la marca a filtrar: "; cin>>marca;
+            cout<<"Ingrese la marca a filtrar: "; getline(cin, marca);
             cout<<"Ingrese el kilometraje: "; cin>>kilometraje;
             cout<<"VEHICULOS DE LA MARCA "<<marca<<" CON KILOMETRAJE MENOR O IGUAL A "<<kilometraje<<endl;
             concesionario.imprime_vehiculos(marca, kilometraje); // Imprime vehiculos segun una marca y kilometraje especifico
