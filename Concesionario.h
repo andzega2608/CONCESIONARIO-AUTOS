@@ -2,8 +2,8 @@
  * Proyecto Concesionario de Autos
  * Andrés Ignacio Zegales Taborga
  * A01711365
- * 27/05/2024
- * Version: 2
+ * 05/06/2024
+ * Version: 3
  * Esta clase definida como Concesionario contiene todas las operaciones
  * para agregar vehiculos (autos, buses, motocicletas), asi tambien sirve para
  * calcular el precio, mostrar las caracteristicas de cada tipo de vehiculo y buscar un
@@ -18,7 +18,7 @@
 #include "Vehiculo.h" // Biblioteca con objetos a usar
 using namespace std;
 
-const int MAX = 1000; // Constante de tamaño de arreglos
+const int MAX = 200; // Constante de tamaño de arreglos
 
 class Concesionario {
     private:
@@ -41,11 +41,16 @@ class Concesionario {
 };
 
 /*
-* El metodo crea_ejemplos() se encarga de crear objetos en el vector vehiculos[]
+* crea_ejemplos()
+*
+* El metodo se encarga de crear objetos en el vector vehiculos[]
 * Dicho metodo genera objetos de tipo Auto, Bus y Motocicleta con el fin de poder hacer pruebas y
 * que el programa posea algunos ejemplos y que no este vacio. Es importante mencionar que estos
 * ejemplos son datos inventados, por lo que no se debe usar este metodo si se va a usar el programa
 * en produccion.
+*
+* @param
+* @return
 */
 
 void Concesionario::crea_ejemplos(){
@@ -69,30 +74,96 @@ void Concesionario::crea_ejemplos(){
     posicion++;
 }
 
+/*
+* agrega_auto(marca, modelo, color, tipo_energía, kilometraje, nro_puerta, techo, tipo_caja)
+*
+* Este metodo se encarga de crear un objeto del tipo auto segun las caracteristicas que se introducen, como ser
+* la marca del auto, el modelo, el kilometraje, etc
+*
+* param marca, modelo, color, tipo de combustible o si es electrico, kilometraje, numero de puertas, techo, tipo de caja
+* @return
+*/
+
 void Concesionario::agrega_auto(string marca, string modelo, string color, string tipo_energia, float kilometraje, int nro_puerta, bool techo, string tipo_caja){
     vehiculos[posicion] = new Auto(marca, modelo, color, tipo_energia, kilometraje, nro_puerta, techo, tipo_caja);
     posicion++;
 }
+
+/*
+* agrega_auto(marca, modelo, color, nro_puerta, techo, tipo_caja)
+*
+* Este metodo se encarga de crear un objeto del tipo auto segun las caracteristicas que se introducen, como ser
+* la marca del auto, el modelo, el tipo de caja. A diferencia del metodo anterior, este metodo toma que el
+* vehiculo es nuevo, es decir, posee cero de kilometraje y el auto es de tipo gasolina, no electrico.
+*
+* param marca, modelo, color, numero de puertas, techo, tipo caja
+* @return
+*/
 
 void Concesionario::agrega_auto(string marca, string modelo, string color, int nro_puerta, bool techo, string tipo_caja){
     vehiculos[posicion] = new Auto(marca, modelo, color, nro_puerta, techo, tipo_caja);
     posicion++;
 }
 
+/*
+* agrega_auto(marca, modelo, color, nro_puerta, techo)
+*
+* Este metodo se encarga de crear un objeto del tipo auto segun las caracteristicas que se introducen, como ser
+* la marca del auto, el modelo, el calor. A diferencia del metodo anterior, este metodo toma que el
+* vehiculo es nuevo, es decir, posee cero de kilometraje, el auto es de tipo gasolina, no electrico. Ademas
+* posee cuatro puertas y el tipo de caja es automatico.
+*
+* param marca, modelo, numero de puertas, techo
+* @return
+*/
+
 void Concesionario::agrega_auto(string marca, string modelo, string color, bool techo){
     vehiculos[posicion] = new Auto(marca, modelo, color, techo);
     posicion++;
 }
+
+/*
+* agrega_bus(marca, modelo, color, tipo_energia, kilometraje, capacidad, tipo_caja)
+*
+* Este metodo se encarga de crear un objeto del tipo bus segun las caracteristicas que se introducen, como ser
+* la marca del bus, el modelo, el kilometraje, etc.
+*
+* param marca, modelo, color, tipo de combustible, kilometraje, capacidad de pasajeros, tipo de caja
+* @return
+*/
 
 void Concesionario::agrega_bus(string marca, string modelo, string color, string tipo_energia, float kilometraje, int capacidad, string tipo_caja){
     vehiculos[posicion] = new Bus(marca, modelo, color, tipo_energia, kilometraje, capacidad, tipo_caja);
     posicion++;
 }
 
+/*
+* agrega_bus(marca, modelo, color, capacidad)
+*
+* Este metodo se encarga de crear un objeto del tipo auto segun las caracteristicas que se introducen, como ser
+* la marca del auto, el modelo, el calor. A diferencia del metodo anterior, este metodo toma que el
+* bus es nuevo, es decir, posee cero de kilometraje, asimismo el bus es de tipo gasolina, no electrico, Asi
+* tambien el tipo de caja del bus es manual
+*
+* param marca, modelo, color, capacidad de pasajeros
+* @return
+*/
+
 void Concesionario::agrega_bus(string marca, string modelo, string color, int capacidad){
     vehiculos[posicion] = new Bus(marca, modelo, color, capacidad);
     posicion++;
 }
+
+/*
+* agrega_moto(marca, modelo, color, tipo_energia, kilometraje, deportiva)
+*
+* Este metodo se encarga de crear un objeto del tipo bus segun las caracteristicas que se introducen, como ser
+* la marca de la motocicleta, el modelo, el kilometraje, si es deportiva o no, etc.
+*
+* param marca, modelo, color, tipo de combustible, kilometraje, deportiva
+* @return
+*/
+
 
 void Concesionario::agrega_moto(string marca, string modelo, string color, string tipo_energia, float kilometraje, bool deportiva){
     vehiculos[posicion] = new Motocicleta(marca, modelo, color, tipo_energia, kilometraje, deportiva);
@@ -100,9 +171,12 @@ void Concesionario::agrega_moto(string marca, string modelo, string color, strin
 }
 
 /*
-* El metodo imprime_vehiculos() se encarga de mostrar todas las caracteristicas de los vehiculos almacenados en el vector
+* imprime_vehiculos()
+* El metodo se encarga de mostrar todas las caracteristicas de los vehiculos almacenados en el vector
 * vehiculos[]. Para tal efecto, este metodo recorre todo el arreglo imprimiendo cada objeto con el
 * metodo mostrar_caracteristicas()
+* @param
+* return string con las carateristicas de cada vehiculo dentro del catalogo
 */
 
 void Concesionario::imprime_vehiculos(){
@@ -114,10 +188,15 @@ void Concesionario::imprime_vehiculos(){
 }
 
 /*
-* El metodo imprime_vehiculos(tipo) se encarga de mostrar todas las caracteristicas de los vehiculos almacenados en el vector
+* imprime_vehiculos(tipo)
+*
+* El metodo se encarga de mostrar todas las caracteristicas de los vehiculos almacenados en el vector
 * vehiculos[] que coincidan con el tipo de vehiculo que se quiere mostrar. Para tal efecto, este metodo recorre
 * todo el arreglo verificando que el tipo de vehiculo sea igual al que desea mostrar. Si es el caso imprime cada objeto con el
 * metodo mostrar_caracteristicas()
+*
+* param tipo del vehiculo que se quiere buscar (Auto, Bus, Motocicleta)
+* return vehiculos que pertenecen al vehiculo que se quiere filtrar
 */
 
 void Concesionario::imprime_vehiculos(string _tipo) {
@@ -128,10 +207,15 @@ void Concesionario::imprime_vehiculos(string _tipo) {
 }
 
 /*
+* imprime_vehiculos(marca, km)
+*
 * El metodo imprime_vehiculos(marca, km) se encarga de mostrar todas las caracteristicas de los vehiculos almacenados en el
 * vector vehiculos[] que coincidan con la marca de vehiculo y con el kilometraje que se quiere mostrar. Para tal efecto, este
 * metodo recorre todo el arreglo verificando que el tipo de vehiculo sea igual al que desea mostrar. Si es el caso imprime
 * cada objeto con el metodo mostrar_caracteristicas()
+*
+* param marca del vehiculo y un kilometraje maximo
+* return vehiculos que la marca que se decidio buscar y con un kilometraje menor al que se introdujo
 */
 
 void Concesionario::imprime_vehiculos(string _marca, float _km) {
@@ -142,10 +226,15 @@ void Concesionario::imprime_vehiculos(string _marca, float _km) {
 }
 
 /*
+* imprime_vehiculos(precio)
+*
 * El metodo imprime_vehiculos(precio) se encarga de mostrar todas las caracteristicas de los vehiculos almacenados en el
 * vector vehiculos[] los cuales poseen un precio menor o igual al precio que se quiero filtrar. Para tal efecto, este
 * metodo recorre todo el arreglo verificando que el precio cumpla con los requerimientos anteriores. Si es el caso imprime
 * cada objeto con el metodo mostrar_caracteristicas()
+*
+* param precio maximo del vehiculos
+* return vehiculos los cuales posean un precio menor al que se introdujo
 */
 
 void Concesionario::imprime_vehiculos(float _precio) {
@@ -156,9 +245,14 @@ void Concesionario::imprime_vehiculos(float _precio) {
 }
 
 /*
-* El metodo liberar_esoecio() actua como un destructor. Al implementar el concepto de polimorfismo y estar trabajando con
+* liberar_espacio()
+*
+* El metodo liberar_espacio() actua como un destructor. Al implementar el concepto de polimorfismo y estar trabajando con
 * la memoria dinamica, al finalizar el programa es necesario eliminar cada elemento creado, de esa forma es que se crea
 * dicho metodo.
+*
+* @param
+* @return
 */
 
 void Concesionario::liberar_espacio() {
