@@ -7,6 +7,7 @@ El programa será construido netamente con el lenguaje C++ standard y correrá s
 compilar con: "g++ Vehiculo.h Concesionario.h Main.cpp"
 correr en linux: "/a.out"
 correr en windows: "a.exe"
+
 Del mismo es importante mencionar que el programa incluye algunos ejemplos de vehículos definidos por default, De ese modo, es importante considerar que estos son inventados con el objetivo de poder realizar pruebas de funcionalidad con el programa. Por lo cual, es importe tomar en cuenta lo anterior, se va a emplear el programa en producción. 
 Adicionalmente, el programa consta de un menú, cuyas opciones son las siguientes: 
 1. Agregar auto
@@ -21,4 +22,5 @@ Adicionalmente, el programa consta de un menú, cuyas opciones son las siguiente
 Mediante estas, se podrá agregar un nuevo vehículo, así también se podrá realizar una búsqueda acorde a algunas características de los vehículos. 
 ## Restricciones
 Algunos casos que generen que el programa deje de funcionar es la introducción incorrecta del tipo de datos. Es importante entender que cada constructor requiere un determinado tipo de dato, como ser enteros, valores flotantes, cadenas de caracteres e incluso el mismo programa requiere valores booleanos. Si se introduce un tipo de valor erróneo en un constructor, método o en otras funciones el programa sufrirá problemas. Del mismo modo, es importante tener en cuenta la longitud del vector Vehiculos[] creado para almacenar los datos de los vehículos, ya que en caso que se supere dicha longitud se crearán datos basura. La longitud definida por el programa es de 200 vehículos, en caso que se supere, habrá un desbordamiento de datos. 
+
 Dejando de lado lo mencionado anteriormente, es importante tener muy en cuenta la entrada de datos al momento de realizar una búsqueda específica según alguna característica específica. En caso que se quiera filtrar el catálogo según la marca, es importante introducir el nombre respetando letras mayúsculas y minúsculas. Esto debido a que programa toma en cuenta el uso de estas. Por ejemplo, si una quiere filtrar autos de la marca "Audi" o "Mercedes Benz", se debe introducir estos datos exactamente de la forma anterior. Esto debido a que, si se introduce "audi" o "mercedes benz", el programa no encontrará coincidencias por lo que indicará que no hay vehículos de ese tipo de auto. Lo mismo ocurre al momento de realizar una búsqueda de los vehículos según el tipo de los mismo. Para poder realizar la búsqueda se debe introducir "Auto", "Bus" o "Motocicleta". Caso contrario el programa no funcionará de la manera correcta y no realizará la búsqueda que se quiere realizar.    
