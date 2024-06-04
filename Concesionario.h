@@ -15,6 +15,7 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "Vehiculo.h" // Biblioteca con objetos a usar
 using namespace std;
 
