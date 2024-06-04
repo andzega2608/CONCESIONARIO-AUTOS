@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 using namespace std;
 
 // Declaracion de la clase Vehiculo
@@ -212,26 +213,18 @@ float Auto::calcular_precio(){ // Este método aplica el concepto de sobreescrit
 /*
 * mostrar_caracteristicas()
 *
-* La funcion concatena todas las caracteristicas del auto y la introduce dentro de una variable usando la
-* funcion to_string, convertimos los valores que no sean del tipo string, de esa forma se puede concatenar todas las
-* variables de importancia.
+* La funcion concatena todas las caracteristicas del auto y la introduce dentro de una variable
 *
 * @param
 * return string con los valores y texto concatenado.
 */
 
 string Auto::mostrar_caracteristicas() { // Este método aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
-    string info;
-    info = "Marca: " + marca + "\n";
-    info = info + "Modelo: " + modelo + "\n";
-    info = info + "Color: " + color + "\n";
-    info = info + "Tipo de energia: " + tipo_energia + "\n";
-    info = info + "Kilometraje: " + to_string(kilometraje) + " km\n";
-    info = info + "Numero de puertas: " + to_string(nro_puerta) + "\n";
-    info = info + "Techo: " + to_string(techo) + "\n";
-    info = info + "Tipo de caja: " + tipo_caja + "\n";
-    info = info + "Precio: " + to_string(calcular_precio()) + "USD\n";
-    return info;
+    stringstream aux;
+    aux<<"Marca: "<<marca<<"\n"<<"Modelo: "<<modelo<<"\n"<<"Color: "<<color<<"\n"<<"Tipo de energia: "<<tipo_energia<<"\n";
+    aux<<"Kilometraje: "<<kilometraje<<" km\n"<<"Numero de puertas: "<<nro_puerta<<"\n"<<"Techo: "<<techo<<"\n"<<"Tipo de caja: ";
+    aux<<tipo_caja<<"\n"<<"Precio: "<<calcular_precio()<<"USD\n";
+    return aux.str();
 }
 
 // Declaracion de la clase Bus que hereda de la clase padre Vehiculo
@@ -350,25 +343,18 @@ float Bus::calcular_precio(){ // Este método aplica el concepto de sobreescritu
 /*
 * mostrar_caracteristicas()
 *
-* La funcion concatena todas las caracteristicas del auto y la introduce dentro de una variable usando la
-* funcion to_string, convertimos los valores que no sean del tipo string, de esa forma se puede concatenar todas las
-* variables de importancia.
+* La funcion concatena todas las caracteristicas del bus y la introduce dentro de una variable
 *
 * @param
 * return string con los valores y texto concatenado.
 */
 
 string Bus::mostrar_caracteristicas() { // Este método aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
-    string info;
-    info = "Marca: " + marca + "\n";
-    info = info + "Modelo: " + modelo + "\n";
-    info = info + "Color: " + color + "\n";
-    info = info + "Tipo de energia: " + tipo_energia + "\n";
-    info = info + "Kilometraje: " + to_string(kilometraje) + " km\n";
-    info = info + "Capacidad de pasajeros: " + to_string(capacidad) + "\n";
-    info = info + "Tipo de caja: " + tipo_caja + "\n";
-    info = info + "Precio: " + to_string(calcular_precio()) + "USD\n";
-    return info;
+    stringstream aux;
+    aux<<"Marca: "<<marca<<"\n"<<"Modelo: "<<modelo<<"\n"<<"Color: "<<color<<"\n"<<"Tipo de energia: "<<tipo_energia<<"\n";
+    aux<<"Kilometraje: "<<kilometraje<<" km\n"<<"Capacidad de pasajeros: "<<capacidad<<"\n"<<"Tipo de caja: "<<tipo_caja<<"\n";
+    aux<<"Precio: "<<calcular_precio()<<"USD\n";
+    return aux.str();
 }
 
 // Declaracion de la clase Bus que hereda de la clase padre Vehiculo
@@ -461,24 +447,17 @@ float Motocicleta::calcular_precio(){ // Este método aplica el concepto de sobr
 /*
 * mostrar_caracteristicas()
 *
-* La funcion concatena todas las caracteristicas del auto y la introduce dentro de una variable
-* La usando la funcion to_string, convertimos los valores que no sean del tipo string, de esa se puede concatenar todas las
-* variables de importancia.
+* La funcion concatena todas las caracteristicas de la motocicleta y la introduce dentro de una variable
 *
 * @param
 * return string con los valores y el texto concatenado.
 */
 
 string Motocicleta::mostrar_caracteristicas(){ // Este método aplica el concepto de sobreescritura con relacion a la clase padre Vehiculo
-    string info;
-    info = "Marca: " + marca + "\n";
-    info = info + "Modelo: " + modelo + "\n";
-    info = info + "Color: " + color + "\n";
-    info = info + "Tipo de energia: " + tipo_energia + "\n";
-    info = info + "Kilometraje: " + to_string(kilometraje) + " km\n";
-    info = info + "Deportiva: " + to_string(deportiva) + "\n";
-    info = info + "Precio: " + to_string(calcular_precio()) + "USD\n";
-    return info;
+    stringstream aux;
+    aux<<"Marca: "<<marca<<"\n"<<"Modelo: "<<modelo<<"\n"<<"Color: "<<color<<"\n"<<"Tipo de energia: "<<tipo_energia<<"\n";
+    aux<<"Kilometraje: "<<kilometraje<<" km\n"<<"Deportiva: "<<deportiva<<"\n"<<"Precio: "<<calcular_precio()<<"USD\n";
+    return aux.str();
 }
 
 #endif // VEHICULO_H
