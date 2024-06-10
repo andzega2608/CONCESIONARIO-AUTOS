@@ -2,8 +2,8 @@
  * Proyecto Concesionario de Autos
  * Andrés Ignacio Zegales Taborga
  * A01711365
- * 05/06/2024
- * Version: 3
+ * 10/06/2024
+ * Version: 4
  *
  * Esta clase definida como Vehiculo es la clase Padre de las clases Auto, Bus y Motocicleta
  * Esta clase brindara tantos sus atributos como metodos a las clases mencionadas anteriormente
@@ -31,16 +31,45 @@ class Vehiculo {
         Vehiculo();
         Vehiculo(string, string, string, string, float); // Metodo donde se aplica sobrecarga
         Vehiculo(string, string, string); // Metodo donde se aplica sobrecarga
+        /*
+        * get_tipo()
+        * @param
+        * return el tipo de vehículo
+        */
         string get_tipo() {return tipo;};
+        /*
+        * get_marca()
+        * @param
+        * return la marca de vehículo
+        */
         string get_marca() {return marca;};
+        /*
+        * get_energia()
+        * @param
+        * return el tipo de energia electrico, gasolina, diesel
+        */
         string get_energia(){return tipo_energia;};
+        /*
+        * get_kilometraje()
+        * @param
+        * return el kilometraje del vehiculo
+        */
         float get_km(){return kilometraje;};
-        virtual float calcular_precio() = 0; // Metodo por default donde se aplica sobreescritura y se aplica polimorfismo
-        virtual string mostrar_caracteristicas() = 0; // Metodo por default donde se aplica sobreescritura y se aplica polimorfismo
+        virtual float calcular_precio() = 0; // Sobreescritura y polimorfismo
+        virtual string mostrar_caracteristicas() = 0; // Sobreescritura y polimorfismo
 };
 
 Vehiculo::Vehiculo(){ // Constructor por default
 }
+
+/*
+* Vehiculo(string _marca, string _modelo, string _color, string _tipo_energia, float _kilometraje)
+*
+* Constructor que recibe todos los atributos de la clase
+*
+* param marca, modelo, color, tipo de energia, kilometraje
+* @return
+*/
 
 Vehiculo::Vehiculo(string _marca, string _modelo, string _color, string _tipo_energia, float _kilometraje){
     tipo = "";
@@ -51,6 +80,16 @@ Vehiculo::Vehiculo(string _marca, string _modelo, string _color, string _tipo_en
     kilometraje = _kilometraje;
     precio = 0.0;
 }
+
+/*
+* Vehiculo(string _marca, string _modelo, string _color)
+*
+* Constructor que recibe algunos atributos de la clase, dicho constructor toma que
+* el vahículo es nuevo, es decir, cero kilometros y donde el tipo de energia es gasolina
+*
+* param marca, modelo, color, tipo de energia, kilometraje
+* @return
+*/
 
 Vehiculo::Vehiculo(string _marca, string _modelo, string _color){
     tipo = "";
@@ -73,11 +112,44 @@ class Auto : public Vehiculo{
         Auto(string, string, string, string, float, int, bool, string); // Sobrecarga
         Auto(string, string, string, int, bool, string); // Sobrecarga
         Auto(string, string, string, bool); // Sobrecarga
+        /*
+        * set_nro_puerta()
+        * Establece el numero de puertas del auto
+        * param el número de las puertas
+        * @return
+        */
         void set_nro_puerta(int _nro_puerta){nro_puerta = _nro_puerta;};
+        /*
+        * set_techo()
+        * Establece si el auto posee techo panoramico o no
+        * param true o false dependiendo la situacion
+        * @return
+        */
         void set_techo(bool _techo){techo = _techo;};
+        /*
+        * set_tipo_caja()
+        * Establece el tipo de caja, caja manual o caja automatica
+        * param tipo de caja
+        * @return
+        */
         void set_tipo_caja(string _tipo_caja){tipo_caja = _tipo_caja;};
+        /*
+        * get_nro_puerta()
+        * @param
+        * return el numero de puertas del auto
+        */
         int get_nro_puerta(){return nro_puerta;};
+        /*
+        * get_techo()
+        * @param
+        * return true o false si el auto posee techo panoramico
+        */
         bool get_techo(){return techo;};
+        /*
+        * get_tipo_caja()
+        * @param
+        * return si es caja manual o automatica
+        */
         string get_tipo_caja(){return tipo_caja;};
         float calcular_precio(); // Sobreescritura
         string mostrar_caracteristicas(); // Sobreescritura
@@ -86,6 +158,16 @@ class Auto : public Vehiculo{
 Auto::Auto(){ // Constructor por default
 }
 
+/*
+* Auto (marca, modelo, color, tipo_energia, kilometraje, nro_puerta, techo, tipo_caja)
+*
+* Constructor que recibe todos los atributos de la clase auto, hereda el constructor de la
+* clase padre Vehiculo
+*
+* param marca, modelo, color, tipo de energia, kilometraje, numero de puertas, techo, tipo de caja
+* @return
+*/
+
 Auto::Auto(string _marca, string _modelo, string _color, string _tipo_energia, float _kilometraje, int _nro_puerta, bool _techo, string _tipo_caja):Vehiculo(_marca, _modelo, _color, _tipo_energia, _kilometraje){
     tipo = "Auto";
     nro_puerta = _nro_puerta;
@@ -93,12 +175,33 @@ Auto::Auto(string _marca, string _modelo, string _color, string _tipo_energia, f
     tipo_caja = _tipo_caja;
 }
 
+/*
+* Auto (marca, modelo, color, nro_puerta, techo, tipo_caja)
+*
+* Constructor que recibe algunos atributos de la clase auto, hereda el constructor de la
+* clase padre Vehiculo. Este constructor toma que el auto es nuevo (0 km)
+*
+* param marca, modelo, color, numero de puertas, techo, tipo de caja
+* @return
+*/
+
 Auto::Auto(string _marca, string _modelo, string _color, int _nro_puerta, bool _techo, string _tipo_caja):Vehiculo(_marca, _modelo, _color){
     tipo = "Auto";
     nro_puerta = _nro_puerta;
     techo = _techo;
     tipo_caja = _tipo_caja;
 }
+
+/*
+* Auto (marca, modelo, color, techo)
+*
+* Constructor que recibe algunos atributos de la clase auto, hereda el constructor de la
+* clase padre Vehiculo. Este constructor toma que el auto es nuevo (0 km) y posee 4 puertas
+* y posee una caja de tipo automática
+*
+* param marca, modelo, color, techo, tipo de caja
+* @return
+*/
 
 Auto::Auto(string _marca, string _modelo, string _color, bool _techo):Vehiculo(_marca, _modelo, _color){
     tipo = "Auto";
@@ -236,22 +339,63 @@ class Bus: public Vehiculo{
         Bus();
         Bus(string, string, string, string, float, int, string); // Sobrecarga
         Bus(string, string, string, int); // Sobrecarga
+        /*
+        * set_capacidad(_capacidad)
+        * param capacidad de pasajeros que posee le bus
+        * @return
+        */
         void set_capacidad(int _capacidad){capacidad = _capacidad;};
+        /*
+        * set_caja(_tipo_caja)
+        * param tipo de caja del bus, automatico o manual
+        * @return
+        */
         void set_caja(string _tipo_caja){tipo_caja = _tipo_caja;};
+        /*
+        * get_capacidad()
+        * @param
+        * return capacidad de pasajeros que tiene el bus
+        */
         int get_capacidad(){return capacidad;};
+        /*
+        * get_caja()
+        * @param
+        * return tipo de caja del bus
+        */
         string get_caja(){return tipo_caja;};
         string mostrar_caracteristicas(); // Sobreescritura
         float calcular_precio(); // Sobreescritura
 };
 
-Bus::Bus(){
+Bus::Bus(){ // Constructor por default
 }
+
+/*
+* Bus(marca, modelo, color, tipo_energia, kilometraje, capacidad, tipo_caja)
+*
+* Constructor que recibe todos los atributos de la clase Bus, asimismo hereda el constructor
+* de la clase padre Vehiculo
+*
+* param marca, modelo, color, tipo_energia, kilometraje, capacidad, tipo_caja
+* @return
+*/
 
 Bus::Bus(string _marca, string _modelo, string _color, string _tipo_energia, float _kilometraje, int _capacidad, string _tipo_caja):Vehiculo(_marca, _modelo, _color, _tipo_energia, _kilometraje){
     tipo = "Bus";
     capacidad = _capacidad;
     tipo_caja = _tipo_caja;
 }
+
+/*
+* Bus(marca, modelo, color, capacidad)
+*
+* Constructor que recibe todos los atributos de la clase Bus, asimismo hereda el constructor
+* de la clase padre Vehiculo. Este constrcutor establece que el bus es nuevo y que el tipo de caja
+* es manual por default
+*
+* param marca, modelo, color, capacidad
+* @return
+*/
 
 Bus::Bus(string _marca, string _modelo, string _color, int _capacidad):Vehiculo(_marca, _modelo, _color){
     tipo = "Bus";
@@ -364,14 +508,34 @@ class Motocicleta : public Vehiculo{
     public: // Metodos de la clase Motocicleta
         Motocicleta();
         Motocicleta(string, string, string, string, float, bool);
+        /*
+        * set_sport(_deportiva)
+        * param si la motocicleta es deportivo o no (true / false)
+        * @return
+        */
         void set_sport(bool _deportiva){deportiva = _deportiva;};
+        /*
+        * get_sport()
+        * @param
+        * return true si es deportiva o false no lo es
+        */
         bool get_sport(){return deportiva;};
         float calcular_precio(); // Sobreescritura
         string mostrar_caracteristicas(); // Sobreescritura
 };
 
-Motocicleta::Motocicleta(){
+Motocicleta::Motocicleta(){ // Constructor por default
 }
+
+/*
+* Motocicleta(marca, modelo, color, tipo_energia, kilometraje, deportiva)
+*
+* Constructor que recibe todos los atributos de la clase y que tambien hereda un constructor
+* de la clase padre Vehículo
+*
+* @param marca, modelo, color, tipo_energia, kilometraje, deportiva
+* @return
+*/
 
 Motocicleta::Motocicleta(string _marca, string _modelo, string _color, string _tipo_energia, float _kilometraje, bool _deportiva):Vehiculo(_marca, _modelo, _color, _tipo_energia, _kilometraje){
     tipo = "Motocicleta";
