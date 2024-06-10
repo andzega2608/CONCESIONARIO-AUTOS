@@ -2,8 +2,8 @@
  * Proyecto Concesionario de Autos
  * Andrés Ignacio Zegales Taborga
  * A01711365
- * 05/06/2024
- * Version: 3
+ * 10/06/2024
+ * Version: 4
  * Esta clase definida como Concesionario contiene todas las operaciones
  * para agregar vehiculos (autos, buses, motocicletas), asi tambien sirve para
  * calcular el precio, mostrar las caracteristicas de cada tipo de vehiculo y buscar un
