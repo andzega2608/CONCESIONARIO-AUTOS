@@ -2,8 +2,8 @@
  * Proyecto Concesionario de Autos
  * Andrés Ignacio Zegales Taborga
  * A01711365
- * 05/06/2024
- * Version: 3
+ * 10/06/2024
+ * Version: 4
  *
  * El presente programa hace referencia a un algoritmo el cual se encarga de capturar
  * distintas caracteristicas de toda clase de vehiculos como ser autos, buses y motocicletas
@@ -40,8 +40,10 @@ int main() {
             system("cls");
             // Ingresamos datos desde teclado
             cout<<"Ingresa los datos correspondientes"<<endl;
-            cout<<"Marca: "; getline(cin, marca); // Se usa getline porque existen marcar como Mercedes Benz que utilizan espacio
-            cout<<"Modelo: "; getline(cin, modelo); // Se utiliza getline porque existen modelos de autos
+            // Se usa getline porque existen marcar como Mercedes Benz que utilizan espacio
+            cout<<"Marca: "; getline(cin, marca);
+            // Se utiliza getline porque existen modelos de autos
+            cout<<"Modelo: "; getline(cin, modelo);
             cout<<"Color: "; cin>>color;
             cout<<"Tipo de energia (Gasolina/Electrico): "; cin>>tipo_energia;
             cout<<"Auto cero km (1 si es nuevo / 0 si no lo es): "; cin>>km;
@@ -50,11 +52,11 @@ int main() {
             cout<<"Tipo de caja (Manual/Automatico): "; cin>>tipo_caja;
             if (km == 1 && pue == 1){
                 // Usamos este metodo si el auto posee 4 puertas y es nuevo (0 kilometros)
-                concesionario.agrega_auto(marca, modelo, color, techo); // Implementamos sobrecarga
+                concesionario.agrega_auto(marca, modelo, color, techo); // Sobrecarga
             }
             else if (pue == 0 && km == 1){
                 // Usamos este metodo si el auto NO posee 4 puertas y es nuevo (0 kilometros)
-                concesionario.agrega_auto(marca, modelo, color, 4, techo, tipo_caja); // Implementamos sobrecarga
+                concesionario.agrega_auto(marca, modelo, color, 4, techo, tipo_caja); // Sobrecarga
             }
             else {
                 // En caso que el auto no sea nuevo, especificamos el kilometraje que posee
@@ -71,8 +73,8 @@ int main() {
             cout<<"Marca: "; getline(cin, marca);
             cout<<"Modelo: "; getline(cin, modelo);
             cout<<"Color: "; cin>>color;
-            cout<<"Tipo de energia (Gasolina/Electrico): "; cin>>tipo_energia;
-            cout<<"Auto cero km (1 si es nuevo / 0 si no lo es): "; cin>>km;
+            cout<<"Tipo de energia (Gasolina/Electrico/Diesel): "; cin>>tipo_energia;
+            cout<<"Bus cero km (1 si es nuevo / 0 si no lo es): "; cin>>km;
             cout<<"Capacidad: "; cin>>capacidad;
             cout<<"Tipo de caja (Manual/Automatico): "; cin>>tipo_caja;
             if (km == 1 && tipo_caja == "Manual"){
@@ -95,7 +97,7 @@ int main() {
             cout<<"Color: "; cin>>color;
             cout<<"Tipo de energía (Gasolina/Electrico): "; cin>>tipo_energia;
             cout<<"Kilometraje: "; cin>>kilometraje;
-            cout<<"Deportiva (true, false): "; cin>>deportiva;
+            cout<<"Deportiva (1 si es / 0 si no lo es): "; cin>>deportiva;
             concesionario.agrega_moto(marca, modelo, color, tipo_energia, kilometraje, deportiva);
             cout<<"MOTOCICLETA AGREGADA"<<endl;
         }
@@ -125,7 +127,8 @@ int main() {
             cout<<"Ingrese la marca a filtrar: "; getline(cin, marca);
             cout<<"Ingrese el kilometraje: "; cin>>kilometraje;
             cout<<"VEHICULOS DE LA MARCA "<<marca<<" CON KILOMETRAJE MENOR O IGUAL A "<<kilometraje<<endl;
-            concesionario.imprime_vehiculos(marca, kilometraje); // Imprime vehiculos segun una marca y kilometraje especifico
+            // Imprime vehiculos segun una marca y kilometraje especifico
+            concesionario.imprime_vehiculos(marca, kilometraje);
         }
         else if (opcion == 7){
             system("cls");
